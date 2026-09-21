@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flores amarillas 🌻</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+            color: #4b3200;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,.45), transparent 25%),
+                radial-gradient(circle at 80% 80%, rgba(255,193,7,.35), transparent 30%),
+                linear-gradient(135deg, #fff3a3 0%, #ffd54f 45%, #f9a825 100%);
+
+            overflow-x: hidden;
+        }
+
+        /* FLORES DEL FONDO */
+
+        .flores {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flores span {
+            position: absolute;
+            bottom: -60px;
+            font-size: 28px;
+            opacity: .7;
+            animation: subir 12s linear infinite;
+        }
+
+        .flores span:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .flores span:nth-child(2) { left: 15%; animation-delay: 3s; }
+        .flores span:nth-child(3) { left: 27%; animation-delay: 6s; }
+        .flores span:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .flores span:nth-child(5) { left: 52%; animation-delay: 5s; }
+        .flores span:nth-child(6) { left: 65%; animation-delay: 2s; }
+        .flores span:nth-child(7) { left: 78%; animation-delay: 7s; }
+        .flores span:nth-child(8) { left: 90%; animation-delay: 4s; }
+
+        @keyframes subir {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+            }
+        }
+
+        /* PANTALLA INICIAL */
+
+        .inicio {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 25px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .flor {
+            font-size: 90px;
+
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .inicio h1 {
+            font-size: 2.3rem;
+            margin: 20px 0 15px;
+            text-shadow: 0 2px 5px rgba(100,60,0,.15);
+        }
+
+        .inicio p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin: 5px;
+        }
+
+        button {
+            margin-top: 25px;
+
+            padding: 15px 30px;
+
+            border: none;
+            border-radius: 50px;
+
+            background: #fffdf0;
+            color: #765000;
+
+            font-size: 1rem;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 8px 25px rgba(90,55,0,.2);
+
+            transition: transform .25s ease,
+                        box-shadow .25s ease;
+        }
+
+        button:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 30px rgba(90,55,0,.3);
+        }
+
+        /* CARTA */
+
+        #carta {
+            display: none;
+        }
+
+        .contenedor {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .tarjeta {
+            width: 100%;
+            max-width: 650px;
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,.82);
+
+            border: 2px solid rgba(255,255,255,.7);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 20px 60px rgba(91,57,0,.25);
+
+            backdrop-filter: blur(10px);
+
+            animation: aparecer .8s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tarjeta .flor {
+            font-size: 70px;
+        }
+
+        .tarjeta h1 {
+            font-size: 2.4rem;
+            margin: 10px 0;
+        }
+
+        .subtitulo {
+            color: #72551d;
+            font-size: 1.05rem;
+        }
+
+        .mensaje {
+            margin-top: 30px;
+
+            padding: 25px;
+
+            background: rgba(255,235,120,.45);
+
+            border-radius: 20px;
+
+            font-size: 1.08rem;
+            line-height: 1.8;
+        }
+
+        .mensaje p {
+            margin: 0 0 15px;
+        }
+
+        .mensaje p:last-child {
+            margin-bottom: 0;
+        }
+
+        .mensaje h2 {
+            color: #d18b00;
+            margin: 20px 0;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 600px) {
+
+            .inicio h1 {
+                font-size: 1.8rem;
+            }
+
+            .inicio p {
+                font-size: 1rem;
+            }
+
+            .flor {
+                font-size: 70px;
+            }
+
+            .tarjeta {
+                padding: 35px 20px;
+            }
+
+            .tarjeta h1 {
+                font-size: 1.9rem;
+            }
+
+            .mensaje {
+                font-size: 1rem;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Flores flotando -->
+    <div class="flores">
+        <span>🌼</span>
+        <span>🌻</span>
+        <span>🌼</span>
+        <span>🌻</span>
+        <span>🌼</span>
+        <span>🌻</span>
+        <span>🌼</span>
+        <span>🌻</span>
+    </div>
+
+
+    <!-- PANTALLA INICIAL -->
+
+    <section id="inicio" class="inicio">
+
+        <div class="flor">🌻</div>
+
+        <h1>Tengo una pequeña sorpresa para vos...</h1>
+
+        <p>
+            No es algo que pueda envolverse
+        </p>
+
+        <p>
+            ni ponerse en un ramo.
+        </p>
+
+        <p>
+            Pero está hecho con muchísimo cariño. 💛
+        </p>
+
+        <button onclick="abrirCarta()">
+            🌼 Tocá aquí
+        </button>
+
+    </section>
+
+
+    <!-- CARTA -->
+
+    <section id="carta">
+
+        <div class="contenedor">
+
+            <div class="tarjeta">
+
+                <div class="flor">🌻</div>
+
+                <h1>Para mi mejor amiga</h1>
+
+                <p class="subtitulo">
+                    Una pequeña flor amarilla para una persona muy especial. 💛
+                </p>
+
+                <div class="mensaje">
+
+                    <p>
+                        Dicen que las flores amarillas representan
+                        alegría, cariño, amistad y buenos deseos.
+                    </p>
+
+                    <p>
+                        Y pensé que no podía existir una mejor manera
+                        de representar lo que significás para mí.
+                    </p>
+
+                    <p>
+                        🌻 Gracias por estar en mi vida.
+                    </p>
+
+                    <p>
+                        Gracias por cada charla, cada risa y cada
+                        momento compartido.
+                    </p>
+
+                    <p>
+                        Hay personas que llegan a nuestra vida y
+                        terminan convirtiéndose en alguien muy especial.
+                    </p>
+
+                    <h2>
+                        Feliz Día de la Primavera 🌻
+                    </h2>
+
+                    <p>
+                        Para mi mejor amiga, con todo mi cariño. ❤️
+                    </p>
+
+                    <p>
+                        Gracias por existir.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        function abrirCarta() {
+
+            document.getElementById("inicio").style.display = "none";
+
+            document.getElementById("carta").style.display = "block";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
